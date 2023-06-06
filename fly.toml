@@ -36,7 +36,7 @@ processes = []
   
   [[services.http_checks]]
     interval = 10000
-    grace_period = "5s"
+    grace_period = "30s"
     method = "get"
     path = "/health"
     protocol = "http"
@@ -47,10 +47,10 @@ processes = []
 
   [[services.script_checks]]
     command       = "/app/health_check.sh"
-    grace_period  = "1s"
-    interval      = "5s"
+    grace_period  = "30s"
+    interval      = "30s"
     restart_limit = 0
-    timeout       = "1s"
+    timeout       = "60s"
 
 
 [deploy]
