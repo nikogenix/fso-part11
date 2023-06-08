@@ -1,0 +1,19 @@
+name: Periodic health check
+
+on:
+    schedule:
+        - cron: "*/5 * * * *"
+
+jobs:
+    health_check:
+        runs-on: ubuntu-20.04
+        steps:
+            - name: Check the deployed service URL
+              uses: jtalk/url-health-check-action@v3
+              with:
+                  # Check the following URL
+                  url: https://rough-surf-7755.fly.dev
+                  # Fail this action after this many failed attempts
+                  max-attempts: 3
+                  # Delay between retries
+                  retry-delay: 5s
